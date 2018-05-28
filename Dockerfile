@@ -9,6 +9,9 @@ RUN sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication
 # Set up directories
 RUN mkdir -p /var/run/sshd /var/log/supervisor /var/run/fail2ban
 
+COPY google_authenticator /google_authenticator
+COPY entrypoint.sh /entrypoint.sh
+
 COPY fail2ban-supervisor.sh /usr/local/bin/
 COPY supervisor.d/* /etc/supervisor/conf.d/
 COPY fail2ban/* /etc/fail2ban/

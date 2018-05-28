@@ -34,9 +34,9 @@ file_env '$SFTP_SECRET2'
 file_env '$SFTP_SECRET3'
 
 if [ ! -f /first_run_passed ]; then
-    adduser $SFTP_USER1 --disabled-login
-    adduser $SFTP_USER2 --disabled-login
-    adduser $SFTP_USER3 --disabled-login
+    adduser --disabled-login -p $(openssl passwd -1 $SFTP_PASSWORD1) $SFTP_USER1 
+    adduser --disabled-login -p $(openssl passwd -1 $SFTP_PASSWORD2) $SFTP_USER2
+    adduser --disabled-login -p $(openssl passwd -1 $SFTP_PASSWORD3) $SFTP_USER3
     mkdir -p /home/$SFTP_USER1/.ssh /home/$SFTP_USER2/.ssh /home/$SFTP_USER3/.ssh
     touch /first_run_passed
 fi
