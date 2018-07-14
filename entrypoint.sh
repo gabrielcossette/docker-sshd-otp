@@ -23,15 +23,15 @@ file_env() {
 	unset "$fileVar"
 }
 
-file_env '$SFTP_USER1'
-file_env '$SFTP_USER2'
-file_env '$SFTP_USER3'
-file_env '$SFTP_PASSWORD1'
-file_env '$SFTP_PASSWORD2'
-file_env '$SFTP_PASSWORD3'
-file_env '$SFTP_SECRET1'
-file_env '$SFTP_SECRET2'
-file_env '$SFTP_SECRET3'
+file_env 'SFTP_USER1'
+file_env 'SFTP_USER2'
+file_env 'SFTP_USER3'
+file_env 'SFTP_PASSWORD1'
+file_env 'SFTP_PASSWORD2'
+file_env 'SFTP_PASSWORD3'
+file_env 'SFTP_SECRET1'
+file_env 'SFTP_SECRET2'
+file_env 'SFTP_SECRET3'
 
 if [ ! -f /first_run_passed ]; then
     adduser --disabled-login -p $(openssl passwd -1 $SFTP_PASSWORD1) $SFTP_USER1 
