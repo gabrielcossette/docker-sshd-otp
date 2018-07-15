@@ -34,9 +34,9 @@ file_env 'SFTP_SECRET2'
 file_env 'SFTP_SECRET3'
 
 if [ ! -f /first_run_passed ]; then
-    adduser --disabled-login -p $(openssl passwd -1 $SFTP_PASSWORD1) $SFTP_USER1 
-    adduser --disabled-login -p $(openssl passwd -1 $SFTP_PASSWORD2) $SFTP_USER2
-    adduser --disabled-login -p $(openssl passwd -1 $SFTP_PASSWORD3) $SFTP_USER3
+    useradd -s /bin/false -p $(openssl passwd -1 $SFTP_PASSWORD1) $SFTP_USER1 
+    useradd -s /bin/false -p $(openssl passwd -1 $SFTP_PASSWORD2) $SFTP_USER2
+    useradd -s /bin/false -p $(openssl passwd -1 $SFTP_PASSWORD3) $SFTP_USER3
     mkdir -p /home/$SFTP_USER1/.ssh /home/$SFTP_USER2/.ssh /home/$SFTP_USER3/.ssh
     touch /first_run_passed
 fi
@@ -49,8 +49,8 @@ sed -i -e "s/SECRETUSER/$SFTP_SECRET1/g" /home/$SFTP_USER1/.google_authenticator
 sed -i -e "s/SECRETUSER/$SFTP_SECRET2/g" /home/$SFTP_USER2/.google_authenticator
 sed -i -e "s/SECRETUSER/$SFTP_SECRET3/g" /home/$SFTP_USER3/.google_authenticator
 
-chown -R $SFTP_USER1: /home/$SFTP_USER1
-chown -R $SFTP_USER2: /home/$SFTP_USER2
-chown -R $SFTP_USER3: /home/$SFTP_USER3
+chown -R $SFTP_USER1 /home/$SFTP_USER1
+chown -R $SFTP_USER2 /home/$SFTP_USER2
+chown -R $SFTP_USER3 /home/$SFTP_USER3
 
 supervisord -c /etc/supervisor/supervisord.conf
