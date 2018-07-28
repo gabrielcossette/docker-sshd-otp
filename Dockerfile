@@ -15,5 +15,5 @@ COPY entrypoint.sh /entrypoint.sh
 COPY fail2ban-supervisor.sh /usr/local/bin/
 COPY supervisor.d/* /etc/supervisor/conf.d/
 COPY fail2ban/* /etc/fail2ban/
-ENTRYPOINT ["entrypoint.sh"] 
+ENTRYPOINT ["/entrypoint.sh"] 
 EXPOSE 22
