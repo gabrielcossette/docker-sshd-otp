@@ -34,10 +34,10 @@ file_env 'SFTP_SECRET2'
 file_env 'SFTP_SECRET3'
 
 if [ ! -f /first_run_passed ]; then
-    groupadd -g 82 wordpress
-	useradd -g wordpress -s /bin/bash -p $(openssl passwd -1 $SFTP_PASSWORD1) $SFTP_USER1 
-    useradd -g wordpress -s /bin/bash -p $(openssl passwd -1 $SFTP_PASSWORD2) $SFTP_USER2
-    useradd -g wordpress -s /bin/bash -p $(openssl passwd -1 $SFTP_PASSWORD3) $SFTP_USER3
+    groupmod -g 82 www-data
+	useradd -G www-data -s /bin/bash -p $(openssl passwd -1 $SFTP_PASSWORD1) $SFTP_USER1 
+    useradd -G www-data -s /bin/bash -p $(openssl passwd -1 $SFTP_PASSWORD2) $SFTP_USER2
+    useradd -G www-data -s /bin/bash -p $(openssl passwd -1 $SFTP_PASSWORD3) $SFTP_USER3
 	mkdir -p /home/$SFTP_USER1/.ssh /home/$SFTP_USER2/.ssh /home/$SFTP_USER3/.ssh
 	ln -s /sites /home/$SFTP_USER1/sites
 	ln -s /sites /home/$SFTP_USER2/sites
